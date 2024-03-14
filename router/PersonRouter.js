@@ -11,7 +11,7 @@ router.get("/user", (req,res)=>{
     }
     res.send(customUser)
 })
-router.post("/", async(req,res)=>{
+router.post("/add", async(req,res)=>{
     try {
         const data= req.body
         const newPerson= new Person(data)
@@ -23,7 +23,7 @@ router.post("/", async(req,res)=>{
         res.json(error.message)
     }
 })
-router.get("/person", async(req, res)=>{
+router.get("/fetch", async(req, res)=>{
     try {
         const response = await Person.find()
         console.log('Data Fetched', response)
@@ -52,7 +52,7 @@ router.get("/:worktype", async(req, res)=>{
     }
 })
 //update operation
-router.put('/person/:id', async(req, res)=>{
+router.put('/update/:id', async(req, res)=>{
     try {
         const id= req.params.id
         const updateData= req.body

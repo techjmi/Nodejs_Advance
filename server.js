@@ -7,7 +7,7 @@
 // fs.appendFile("geeting.txt", 'hi'+ user.username+"!",()=>{
 //     console.log("file created sucessfully")
 // })
-
+require('dotenv').config()
 const express= require("express")
 const mongodbConnectd = require("./db")
 const app= express()
@@ -16,15 +16,15 @@ const Person = require("./model/Person")
 const MenuItem = require("./model/Menu")
 const PersonRouter = require("./router/PersonRouter")
 const MenuRouter= require("./router/MenuRouter")
-
+const PORT= process.env.PORT||8000
 app.use(bodyParser.json())
 app.get("/", (req,res)=>{
     res.send("hello this is advancced nodejs tutorial....")
 })
-app.use('/api', PersonRouter)
-app.use('/list', MenuRouter)
+app.use('/user', PersonRouter)
+app.use('/menu', MenuRouter)
 mongodbConnectd()
 
-app.listen(8000, ()=>{
-    console.log("the server is running on port no 8000")
+app.listen(PORT, ()=>{
+    console.log(`The Server is running on Port No ${PORT}`)
 })
